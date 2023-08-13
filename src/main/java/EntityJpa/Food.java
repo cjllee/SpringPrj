@@ -6,6 +6,7 @@ public class Food {
     String FoodType;
     String name;
     int price;
+    int a;
 
     public int getOrder_Number() {
         return Order_Number;
