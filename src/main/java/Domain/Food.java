@@ -1,4 +1,4 @@
-package EntityJpa;
+package Domain;
 
 public class Food {
 
