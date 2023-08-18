@@ -1,6 +1,5 @@
 package Domain;
 
-<<<<<<< HEAD
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.Embedded;
