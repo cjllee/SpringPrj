@@ -1,5 +1,6 @@
 package Domain;
 
+<<<<<<< HEAD
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.Embedded;
@@ -32,6 +33,30 @@ public class Food {
 
     public void setFoodType(FoodType foodType) {
         this.foodType = foodType;
+=======
+public class Food {
+
+    int Order_Number;
+    String FoodType;
+    String name;
+    int price;
+    int a;
+
+    public int getOrder_Number() {
+        return Order_Number;
+    }
+
+    public void setOrder_Number(int order_Number) {
+        Order_Number = order_Number;
+    }
+
+    public String getFoodType() {
+        return FoodType;
+    }
+
+    public void setFoodType(String foodType) {
+        FoodType = foodType;
+>>>>>>> origin/main
     }
 
     public String getName() {
