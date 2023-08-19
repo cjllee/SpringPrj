@@ -1,6 +1,5 @@
-package Repository;
+package food;
 
-import Domain.Food;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

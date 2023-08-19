@@ -1,4 +1,4 @@
-package Domain;
+package food;
 
 import javax.persistence.Embeddable;
 

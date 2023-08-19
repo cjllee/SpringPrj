@@ -1,6 +1,4 @@
-package Domain;
-
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+package food;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -16,7 +14,7 @@ public class Food {
     @Embedded
     FoodType foodType;
     String name;
-    int price;
+    Long price;
 
     public Long getFood_id() {
         return food_id;
@@ -42,11 +40,11 @@ public class Food {
         this.name = name;
     }
 
-    public int getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 }
