@@ -11,8 +11,6 @@ public class Food {
     @Id
     @GeneratedValue
     Long food_id;
-    @Embedded
-    FoodType foodType;
     String name;
     Long price;
 
@@ -22,14 +20,6 @@ public class Food {
 
     public void setFood_id(Long food_id) {
         this.food_id = food_id;
-    }
-
-    public FoodType getFoodType() {
-        return foodType;
-    }
-
-    public void setFoodType(FoodType foodType) {
-        this.foodType = foodType;
     }
 
     public String getName() {
