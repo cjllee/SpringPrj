@@ -19,8 +19,4 @@ public class FoodRepository {
         return  em.find(Food.class, id);
     }
 
-    public List<Food> findAll(){
-        return em.createQuery("select m from  Food m", Food.class)
-                .getResultList();
-    }
 }
