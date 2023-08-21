@@ -10,16 +10,16 @@ public class Food {
 
     @Id
     @GeneratedValue
-    Long food_id;
+    Long id;
     String name;
     Long price;
 
-    public Long getFood_id() {
-        return food_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setFood_id(Long food_id) {
-        this.food_id = food_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -8,7 +8,7 @@ public class FoodController {
     public String create(FoodForm form){
 
         Food food = new Food();
-        food.setFood_id(form.getId());
+        food.setId(form.getId());
         food.setName(form.getName());
         food.setPrice(form.getPrice());
 
