@@ -9,8 +9,11 @@ import java.util.List;
 @RequestMapping("/foods")
 public class FoodController {
 
+    private final  FoodService foodService;
     @Autowired
-    FoodService foodService;
+    public FoodController(FoodService foodService) {
+        this.foodService = foodService;
+    }
 
     @PostMapping
     public String create(@RequestBody FoodForm form) {
