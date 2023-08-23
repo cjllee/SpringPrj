@@ -24,7 +24,11 @@ public class FoodService {
     }
 
     public Food findOne(Long foodId) {
-        return foodRepository.findOne(foodId);
+        Food food = foodRepository.findOne(foodId);
+        if (food == null) {
+            throw new FoodNotFoundException("Food not found with ID: " + foodId);
+        }
+        return food;
     }
 
     public List<Food> findAll() {

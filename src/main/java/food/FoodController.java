@@ -1,6 +1,8 @@
 package food;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,43 +11,64 @@ import java.util.List;
 @RequestMapping("/foods")
 public class FoodController {
 
-    private final  FoodService foodService;
+    private final FoodService foodService;
+
     @Autowired
     public FoodController(FoodService foodService) {
         this.foodService = foodService;
     }
 
     @PostMapping
-    public String create(@RequestBody FoodForm form) {
-        Food food = new Food();
-        food.setId(form.getId());
-        food.setName(form.getName());
-        food.setPrice(form.getPrice());
+    public ResponseEntity<String> create(@RequestBody FoodForm form) {
+        Food food = Food.builder()
+                .id(form.getId())
+                .name(form.getName())
+                .price(form.getPrice())
+                .build();
 
         foodService.join(food);
 
-        return "redirect:/";
+        return new ResponseEntity<>("Created successfully", HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public Food getFood(@PathVariable Long id) {
-        return foodService.findOne(id);
+    public ResponseEntity<Food> getFood(@PathVariable Long id) {
+        try {
+            Food food = foodService.findOne(id);
+            return new ResponseEntity<>(food, HttpStatus.OK);
+        } catch (FoodNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping
-    public List<Food> getAllFoods() {
-        return foodService.findAll();
+    public ResponseEntity<List<Food>> getAllFoods() {
+        List<Food> foods = foodService.findAll();
+        return new ResponseEntity<>(foods, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public String updateFood(@PathVariable Long id, @RequestBody FoodForm form) {
-        foodService.updateFood(id, form);
-        return "redirect:/";
+    @PostMapping("/{id}")
+    public ResponseEntity<String> updateFood(@RequestBody FoodForm form) {
+        try {
+            foodService.updateFood(form.getId(), form);
+            return new ResponseEntity<>("Updated successfully", HttpStatus.OK);
+        } catch (FoodNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/{id}")
-    public String deleteFood(@PathVariable Long id) {
-        foodService.deleteFood(id);
-        return "redirect:/";
+    public ResponseEntity<String> deleteFood(@PathVariable Long id) {
+        try {
+            foodService.deleteFood(id);
+            return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
+        } catch (FoodNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @ExceptionHandler(FoodNotFoundException.class)
+    public ResponseEntity<String> handleFoodNotFoundException(FoodNotFoundException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
