@@ -4,10 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
@@ -16,8 +13,12 @@ public class Food {
 
     @Id
     @GeneratedValue
-    Long id;
-    String name;
-    Long price;
+    private Long id;
+
+    private String name;
+
+    private Long price;
+
+    @ManyToOne
 
 }

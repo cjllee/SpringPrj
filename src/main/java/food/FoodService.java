@@ -23,7 +23,7 @@ public class FoodService {
         return food.getId();
     }
 
-    public Food findOne(Long foodId) {
+    public Food findById(Long foodId) {
         Food food = foodRepository.findOne(foodId);
         if (food == null) {
             throw new FoodNotFoundException("Food not found with ID: " + foodId);
@@ -37,7 +37,7 @@ public class FoodService {
 
     @Transactional
     public void updateFood(Long id, FoodForm form) {
-        Food food = findOne(id);
+        Food food = findById(id);
         food.setName(form.getName());
         food.setPrice(form.getPrice());
     }

@@ -34,7 +34,7 @@ public class FoodController {
     @GetMapping("/{id}")
     public ResponseEntity<Food> getFood(@PathVariable Long id) {
         try {
-            Food food = foodService.findOne(id);
+            Food food = foodService.findById(id);
             return new ResponseEntity<>(food, HttpStatus.OK);
         } catch (FoodNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -47,7 +47,7 @@ public class FoodController {
         return new ResponseEntity<>(foods, HttpStatus.OK);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<String> updateFood(@RequestBody FoodForm form) {
         try {
             foodService.updateFood(form.getId(), form);
