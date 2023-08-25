@@ -1,28 +1,32 @@
+// Order.java
 package order;
 
+import food.Food;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 @Builder
 public class Order {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Long id;
 
-    private LocalDateTime orderDate;
+    private String name;
+
 
     @Embedded
     private Address address;
 
-    @OneToMany
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<Food> foods;
 
 }
