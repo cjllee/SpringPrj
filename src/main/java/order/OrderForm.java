@@ -16,8 +16,5 @@ public class OrderForm {
     private String name;
     private Address address;
     private List<Food> foods;
-    private String city;
-    private String street;
-    private String zipcode;
 }
 

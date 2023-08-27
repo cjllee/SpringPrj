@@ -26,8 +26,6 @@ public class OrderRepository {
 
     public void delete(Long id) {
         Order order = findOne(id);
-        if (order != null) {
             em.remove(order);
-        }
     }
 }
